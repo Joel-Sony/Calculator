@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+   
+#calculatorBox{
+    display:flex;
+    flex-direction: column;
+}
+
+.buttonBox{
+    display:flex;
+}
+
+.key{
+    width:20px;
+    height:20px;
+}
