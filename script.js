@@ -8,6 +8,7 @@ let firstOperandFlag=1;
 let secondOperandFlag=0;
 let secondOperand;
 let operator;
+let operatorPressedId;
 
 let decimalFlag=0;
 
@@ -34,21 +35,27 @@ keys.forEach((key)=>{
         }
 
         else if(keyClass ==="key clear"){
-            screen.firstChild.textContent='';
-            firstOperandDigits=0;
-            secondOperandDigits=0;
+            screen.firstChild.textContent = '';
+            firstOperandDigits = 0;
+            secondOperandDigits = 0;
+            firstOperandFlag = 1;
+            secondOperandFlag = 0;
+            decimalFlag = 0;
+            operatorPressedId && operatorPressedId.classList.remove("pressed")
         }
         else if(keyClass==="key operator"){
+            operatorPressedId=document.getElementById(`${e.target.id}`)
+            operatorPressedId.classList.add("pressed");
             if(keyText=='%'){
                 screen.firstChild.textContent=firstOperand/100;
             }
             else{
-                if(keyText=='.') {
-                    decimalFlag=1;
+                if(decimalFlag==1) {
                     firstOperand=parseFloat(screen.firstChild.textContent);
                 }
                 else{
                     firstOperand=parseInt(screen.firstChild.textContent);
+                   
                 }
                 screen.firstChild.textContent='';
                 firstOperandDigits=0;
@@ -71,28 +78,44 @@ keys.forEach((key)=>{
             if(!screen.firstChild.textContent=='' && !secondOperandFlag==0){
                 if(decimalFlag==1) secondOperand=parseFloat(screen.firstChild.textContent);
                 else secondOperand=parseInt(screen.firstChild.textContent);
+                let result=0;
                 switch(operator){
                     case('+'):{
-                        screen.firstChild.textContent=firstOperand+secondOperand;
+                        result=firstOperand+secondOperand;
                         break;
                     }
                     case('-'):{
-                        screen.firstChild.textContent=firstOperand-secondOperand;
+                        result=firstOperand-secondOperand;
                         break;
                     }
                     case('*'):{
-                        screen.firstChild.textContent=firstOperand*secondOperand;
+                        result=firstOperand*secondOperand;
                         break;
                     }
                     case('/'):{
-                        screen.firstChild.textContent=firstOperand/secondOperand;
+                        result=firstOperand/secondOperand;
                         break;
                     }
 
                 }
+                let resultString = result.toString();
+                if(resultString.length>10) resultString=resultString.slice(0,9);
+                screen.firstChild.textContent=resultString;
+                firstOperand = parseFloat(resultString);  
 
             }
+            firstOperandFlag = 1;
+            secondOperandFlag = 0;
+            secondOperandDigits = 0;
+            operatorPressedId.classList.remove("pressed");
+            decimalFlag = 0;
         }
+        else if(keyClass=="key decimal"){
+            if(!screen.firstChild.textContent.includes('.')) {
+                decimalFlag=1;
+                screen.firstChild.textContent+='.';
+            }
+        }        
         console.log(`firstoperand: ${firstOperand} secondoperand: ${secondOperand}`)
 
 })}
