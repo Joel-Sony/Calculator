@@ -19,16 +19,15 @@
     display:flex;
     gap:4px;
     /* width:auto: */
-    height: 60px;
+    height: 70px;
 }
 
 #calculatorBox{
-    margin-top:30px;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height:90vh;
+    height:87vh;
     width:auto;
     border: solid 10px black;
 }
@@ -37,8 +36,7 @@
     display:flex;
     background-color: #433878;
     width:400px;
-    flex:1;
-    padding-top:10px;   
+    flex:1;  
     justify-content:space-evenly;
 }
 
@@ -61,7 +59,7 @@
     height:80px;
     text-align:right;
     line-height: 100px;
-    font-size:50px;
+    font-size:70px;
 }
 
 main{
