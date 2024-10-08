@@ -30,9 +30,10 @@
     align-items: center;
     height:87vh;
     width:auto;
-    border: solid 3px black;
+    border: ridge 10px black;
     padding:20px;
-    border-radius: 10px;
+    border-radius: 20px;
+    background-color: #4b3d3d;
 }
 
 .buttonBox{
@@ -90,7 +91,7 @@ body{
 }
 
 .pressed{
-    background-color: white;
+    opacity:0.8;
 }
 
 header{
